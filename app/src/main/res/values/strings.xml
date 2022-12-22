@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Bicycle Shop</string>
     <string name="enter_button">Enter</string>
-    <string name="productList">Product List</string>
+    <string name="productList_title">Product List</string>
+    <string name="product_details_title">Product Details and Parts List</string>
+    <string name="parts_details_title">Parts List</string>
+    <string name="floatingPlus">Add Button</string>
 </resources>
