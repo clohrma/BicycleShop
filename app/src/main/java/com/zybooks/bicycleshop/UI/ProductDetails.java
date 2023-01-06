@@ -2,22 +2,18 @@ package com.zybooks.bicycleshop.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zybooks.bicycleshop.Database.Repository;
 import com.zybooks.bicycleshop.R;
-import com.zybooks.bicycleshop.entities.Part;
 import com.zybooks.bicycleshop.entities.Product;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDetails extends AppCompatActivity {
 
@@ -32,6 +28,7 @@ public class ProductDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+
         editName = findViewById(R.id.productName);
         editPrice = findViewById(R.id.productPrice);
 
@@ -48,26 +45,28 @@ public class ProductDetails extends AppCompatActivity {
         recyclerView.setAdapter(partAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Part> filteredParts = new ArrayList<>();
-        for(Part part : repository.getAllParts()){
-            if(part.getProductID() == id) filteredParts.add(part);
-        }
 
         Button save = findViewById(R.id.saveProduct);
-        save.setOnClickListener(view -> {
-            if (id == -1) {
-                product = new Product(0, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()));
-                repository.insert(product);
-            } else {
-                product = new Product(id, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()));
-                repository.update(product);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (id == -1) {
+                    product = new Product(0, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()));
+                    repository.insert(product);
+                } else {
+                    product = new Product(id, editName.getText().toString(), Double.parseDouble(editPrice.getText().toString()));
+                    repository.update(product);
+                }
             }
         });
 
         FloatingActionButton fab = findViewById(R.id.productDetailsFAB);
-        fab.setOnClickListener(view -> {
-            Intent intent = new Intent(ProductDetails.this, PartDetails.class);
-            startActivity(intent);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductDetails.this, PartDetail.class);
+                startActivity(intent);
+            }
         });
     }
 }

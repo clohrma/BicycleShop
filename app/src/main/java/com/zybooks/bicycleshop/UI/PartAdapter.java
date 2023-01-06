@@ -1,6 +1,5 @@
 package com.zybooks.bicycleshop.UI;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -31,7 +30,7 @@ public class PartAdapter extends RecyclerView.Adapter<PartAdapter.PartViewHolder
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 final Part current = mParts.get(position);
-                Intent intent = new Intent(context, PartDetails.class);
+                Intent intent = new Intent(context, PartDetail.class);
                 intent.putExtra("id", current.getPartID());
                 intent.putExtra("name", current.getPartName());
                 intent.putExtra("price", current.getPartPrice());

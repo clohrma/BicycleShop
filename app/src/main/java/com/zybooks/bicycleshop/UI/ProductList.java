@@ -21,16 +21,7 @@ public class ProductList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
-        RecyclerView recyclerView = findViewById(R.id.productRecyclerview);
-        final ProductAdapter productAdapter = new ProductAdapter(this);
-        recyclerView.setAdapter(productAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        repository=new Repository(getApplication());
-        List<Product> allProducts = repository.getAllProducts();
-
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
-        productAdapter.setProducts(allProducts);
-
         fab.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -38,6 +29,14 @@ public class ProductList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        repository=new Repository(getApplication());
+        List<Product> allProducts = repository.getAllProducts();
+        RecyclerView recyclerView = findViewById(R.id.productRecyclerview);
+
+        final ProductAdapter productAdapter = new ProductAdapter(this);
+        recyclerView.setAdapter(productAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        productAdapter.setProducts(allProducts);
     }
 
     @Override

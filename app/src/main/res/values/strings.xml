@@ -12,4 +12,6 @@
     <string name="product_price">Product Price </string>
     <string name="part_name">Part Name</string>
     <string name="part_price">Part Price</string>
+    <string name="notify">Notify</string>
+    <string name="share_notes">Share Notes</string>
 </resources>

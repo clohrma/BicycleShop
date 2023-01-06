@@ -19,14 +19,15 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     class ProductViewHolder extends RecyclerView.ViewHolder {
         private final TextView productItemView;
-        private ProductViewHolder(View itemView){
+
+        private ProductViewHolder(View itemView) {
             super(itemView);
-            productItemView=itemView.findViewById(R.id.productItemTextView);
+            productItemView = itemView.findViewById(R.id.productItemTextView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int postion=getAdapterPosition();
-                    final Product current = mProducts.get(postion);
+                    int position = getAdapterPosition();
+                    final Product current = mProducts.get(position);
                     Intent intent = new Intent(context, ProductDetails.class);
                     intent.putExtra("id", current.getProductID());
                     intent.putExtra("name", current.getProductName());
@@ -34,33 +35,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     context.startActivity(intent);
                 }
             });
-
         }
     }
+
     private List<Product> mProducts;
     private final Context context;
     private final LayoutInflater mInflater;
 
-    public ProductAdapter(Context context){
-        mInflater=LayoutInflater.from(context);
-        this.context=context;
+    public ProductAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @NonNull
     @Override
     public ProductAdapter.ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView=mInflater.inflate(R.layout.product_list_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.product_list_item, parent, false);
         return new ProductViewHolder((itemView));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHolder holder, int position) {
-        if(mProducts != null){
+        if (mProducts != null) {
             Product current = mProducts.get(position);
             String name = current.getProductName();
             holder.productItemView.setText(name);
-        }
-        else{
+        } else {
             holder.productItemView.setText("No Product Name");
         }
     }
@@ -70,8 +70,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return mProducts.size();
     }
 
-    public void setProducts(List<Product> products){
-        mProducts=products;
+    public void setProducts(List<Product> products) {
+        mProducts = products;
         notifyDataSetChanged();
     }
 }

@@ -15,6 +15,7 @@
         android:text="@string/part_name"
         tools:layout_editor_absoluteX="1db"
         tools:layout_editor_absoluteY="1db" />
+
     <TextView
         android:id="@+id/partPriceTextView"
         android:layout_width="100dp"
